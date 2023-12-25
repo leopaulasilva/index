@@ -11,7 +11,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class TrainerDTO {
+public class TrainerR {
 
     private Long id;
     @NotBlank(message = "{message.validation.name}")

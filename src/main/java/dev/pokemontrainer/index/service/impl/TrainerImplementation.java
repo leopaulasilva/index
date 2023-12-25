@@ -2,7 +2,7 @@ package dev.pokemontrainer.index.service.impl;
 
 import dev.pokemontrainer.index.dao.PokemonApiAbility;
 import dev.pokemontrainer.index.dao.PokemonApi;
-import dev.pokemontrainer.index.dao.TrainerDTO;
+import dev.pokemontrainer.index.dao.TrainerR;
 import dev.pokemontrainer.index.entity.Ability;
 import dev.pokemontrainer.index.entity.Pokemon;
 import dev.pokemontrainer.index.entity.Trainer;
@@ -69,7 +69,7 @@ public class TrainerImplementation implements TrainerService {
 
     @Override
     @Transactional
-    public Trainer save(TrainerDTO dto) {
+    public Trainer save(TrainerR dto) {
         Optional<Trainer> existingTrainer = trainerRepository.findByName(dto.getName());
 
         existingTrainer.ifPresentOrElse(
@@ -160,7 +160,7 @@ public class TrainerImplementation implements TrainerService {
     }
 
     @Override
-    public List<TrainerDTO> findAllTrainers() {
+    public List<TrainerR> findAllTrainers() {
         List<Trainer> trainers = trainerRepository.findAll();
         logger.info(getMessage("message.fetchSuccess", trainers.size()));
         return trainers.stream()

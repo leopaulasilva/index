@@ -1,12 +1,10 @@
 package dev.pokemontrainer.index.controller;
 
-import dev.pokemontrainer.index.dao.TrainerDTO;
+import dev.pokemontrainer.index.dao.TrainerR;
 import dev.pokemontrainer.index.entity.Trainer;
 import dev.pokemontrainer.index.service.TrainerService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -21,9 +19,8 @@ import java.util.List;
 @RequestMapping("/api/v1/trainers")
 public class TrainerController {
 
-    private static final Logger logger = LoggerFactory.getLogger(TrainerController.class);
     @Autowired
-    private TrainerService trainerService;
+    private final TrainerService trainerService;
     @Autowired
     private final MessageSource messageSource;
     public TrainerController(TrainerService trainerService, MessageSource messageSource) {
@@ -34,12 +31,12 @@ public class TrainerController {
         return messageSource.getMessage(messageCode, args, LocaleContextHolder.getLocale());
     }
     @GetMapping
-    public List<TrainerDTO> getAllTrainers() {
+    public List<TrainerR> getAllTrainers() {
         return trainerService.findAllTrainers();
     }
 
     @PostMapping
-    public ResponseEntity<Trainer> createTrainer(@Valid @RequestBody TrainerDTO trainer) throws ServerException {
+    public ResponseEntity<Trainer> createTrainer(@Valid @RequestBody TrainerR trainer) throws ServerException {
         Trainer savedTrainer = trainerService.save(trainer);
         return new ResponseEntity<>(savedTrainer, HttpStatus.CREATED);
 
