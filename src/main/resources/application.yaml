@@ -1,0 +1,55 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /index
+  error:
+    path: /error
+
+# Log
+logging:
+  level:
+    root: INFO
+  file: index.log
+  path: /var/log
+  pattern:
+    console: '%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n'
+    file: '%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n'
+
+# Datasource Configuration (H2 Database)
+spring:
+  messages:
+    basename: messages
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  h2:
+    console:
+      enabled: false
+      path: /h2-console
+
+  # Hibernate Configuration
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+    show_sql: false
+    properties:
+      hibernate:
+        use_sql_comments: false
+        format_sql: true
+  datasource:
+    url: jdbc:h2:mem:pokedb
+    driverClassName: org.h2.Driver
+    username: root
+    password: 12345
+
+
+token:
+  signing:
+    key: 413F4428472B4B6250655368566D5970337336763979244226452948404D6351
+
+
+pokeApiUrl: https://pokeapi.co/api/v2/pokemon/?offset={0}&limit={1}
+pokeApiUrlByName: https://pokeapi.co/api/v2/pokemon/{value}
