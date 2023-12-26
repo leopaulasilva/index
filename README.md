@@ -36,15 +36,15 @@ Other Libraries:
 
 ## How to test
 ### Signup endpoint
-Hit the Hit the following API:
+Hit the following API:
 ```js
 - curl --location 'http://localhost:8080/index/api/v1/auth/signup' \
 --header 'Content-Type: application/json' \
 --header 'Cookie: JSESSIONID=860FDE1729E3027FDBBCAC75B9D066A2' \
 --data-raw '{
-"firstName": "spring",
-"lastName": "security",
-"email": "springsecurity@google.com",
+"firstName": "Leonardo",
+"lastName": "Silva",
+"email": "leo@google.com",
 "password": "123456"
 }'
 ```
@@ -83,7 +83,6 @@ Response:
 }
 ```
 ### Create trainer endpoint
-Hit this
 As this API is protected,Copy the user token generated during the sign-up process and include it as an authorization header (Bearer Token type). Send another request to the Resource API URL and examine the response: we should now have successful access to the desired resource.
 This endpoint create or update the trainer's register along with his pokemons 
 ```js
